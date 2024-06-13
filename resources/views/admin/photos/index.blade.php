@@ -23,12 +23,12 @@
                         <tr class="">
                             <td>{{ $photo->id }}</td>
                             <td>{{ $photo->title }}</td>
-                            <td>{{ $photo->description }}</td>
+                            <td>{!! $photo->description ?? '<em>No Description Available</em>' !!}</td>
                             <td scope="row">
-                                img
+                                <img width="100" src="{{ asset('storage/' . $photo->image_url) }}" alt="">
                             </td>
                             <td>{{ $photo->featured == null ? 'No' : 'Yes' }}</td>
-                            <td>Create / Edit / Delete</td>
+                            <td>Edit / Delete</td>
                         </tr>
 
                     @empty
