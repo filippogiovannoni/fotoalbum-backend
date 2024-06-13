@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        @include('partials.message')
         <a href="{{ route('admin.photos.create') }}" class="btn btn-primary">
             Add Photo
         </a>
@@ -28,7 +29,10 @@
                                 <img width="100" src="{{ asset('storage/' . $photo->image_url) }}" alt="">
                             </td>
                             <td>{{ $photo->featured == null ? 'No' : 'Yes' }}</td>
-                            <td>Edit / Delete</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="{{ route('admin.photos.show', $photo) }}"><i
+                                        class="fa fa-eye"></i></a>
+                            </td>
                         </tr>
 
                     @empty
