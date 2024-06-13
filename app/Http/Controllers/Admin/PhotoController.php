@@ -62,7 +62,8 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        $categories = [];
+        return view('admin.photos.edit', compact('photo', 'categories'));
     }
 
     /**
@@ -70,7 +71,23 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //
+        // Validate
+        $val_data = $request->validated();
+
+
+        if ($request->has('image_url')) {
+
+            Storage::delete($photo->image_url);
+
+            // Upload the new photo
+            $val_data['image_url'] = Storage::put('uploads', $request->image_url);
+        }
+
+        // Update the photo
+        $photo->update($val_data);
+
+        // Redirect
+        return to_route('admin.photos.index')->with('message', 'Photo updated successfully');
     }
 
     /**
