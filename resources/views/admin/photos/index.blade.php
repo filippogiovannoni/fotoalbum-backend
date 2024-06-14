@@ -4,7 +4,7 @@
     <div class="container">
         @include('partials.message')
         <a href="{{ route('admin.photos.create') }}" class="btn btn-primary">
-            Add Photo
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Photo
         </a>
 
         <div class="table-responsive">

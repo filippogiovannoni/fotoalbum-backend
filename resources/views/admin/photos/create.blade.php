@@ -1,11 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
+    <header class="bg-dark text-white py-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3>
+                Adding photo
+            </h3>
+            <a class="btn btn-primary" href="{{ route('admin.photos.index') }}">
+                <i class="fas fa-chevron-left fa-sm fa-fw"></i> All Photos</a>
+        </div>
+    </header>
+
+
+
     <div class="container">
         @include('partials.errors')
-        <h3 class="my-2">
-            Adding photo
-        </h3>
         <form action="{{ route('admin.photos.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
@@ -38,9 +47,10 @@
                 </select>
             </div>
 
-            <div class="form-check mb-3">
+            <div class="form-group form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="featured" name="featured" value="1"
+                    {{ old('featured') ? 'checked' : '' }}>
                 <label class="form-check-label" for="featured">Featured</label>
-                <input class="form-check-input" type="checkbox" value="1" id="featured" />
             </div>
 
             <button class="btn btn-primary" type="submit">

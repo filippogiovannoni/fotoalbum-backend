@@ -24,7 +24,7 @@ class UpdatePhotoRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'nullable',
-            'image_url' => 'required|image|max:100|mimes:png,jpg,jpeg',
+            'image_url' => 'nullable|image|max:100|mimes:png,jpg,jpeg',
             'featured' => 'boolean|nullable'
         ];
     }

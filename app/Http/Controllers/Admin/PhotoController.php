@@ -71,8 +71,13 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
+        // if (!$request->has('featured')) {
+        //     $request['featured'] = 0;
+        // }
         // Validate
         $val_data = $request->validated();
+
+        // dd($val_data);
 
 
         if ($request->has('image_url')) {
