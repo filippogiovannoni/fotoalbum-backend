@@ -15,7 +15,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::all();
+        $photos = Photo::where('user_id', auth()->id())->orderByDesc('id')->paginate(4);
 
         return view('admin.photos.index', compact('photos'));
     }
@@ -40,6 +40,9 @@ class PhotoController extends Controller
         // Add cover image
         $val_data['image_url'] = Storage::put('uploads', $request->image_url);
 
+        // Associate the photo to the logged user id
+        $val_data['user_id'] = auth()->id();
+
         // Create
         Photo::create($val_data);
         // dd($val_data);
@@ -62,8 +65,12 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        $categories = [];
-        return view('admin.photos.edit', compact('photo', 'categories'));
+        if ($photo->user_id == auth()->id()) {
+            $categories = [];
+            return view('admin.photos.edit', compact('photo', 'categories'));
+        } else {
+            abort(403, 'You cannot edit a photo that is not yours! ✋');
+        }
     }
 
     /**
@@ -71,6 +78,10 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
+
+        if ($photo->user_id != auth()->id()) {
+            abort(403, 'You cannot edit a photo that is not yours! ✋');
+        }
 
         // Validate
         $val_data = $request->validated();
@@ -95,6 +106,11 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
+
+        if ($photo->user_id != auth()->id()) {
+            abort(403, 'You cannot delete a photo that is not yours! ✋');
+        }
+
         // Delete the photo from the storage that is required
         Storage::delete($photo->image_url);
 
