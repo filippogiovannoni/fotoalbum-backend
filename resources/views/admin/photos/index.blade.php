@@ -21,18 +21,19 @@
                 </thead>
                 <tbody class="table-group-divider">
                     @forelse ($photos as $photo)
-                        <tr class="">
+                        <tr>
                             <td>{{ $photo->id }}</td>
                             <td>{{ $photo->title }}</td>
                             <td>{!! $photo->description ?? '<em>No Description Available</em>' !!}</td>
                             <td scope="row">
-                                <img width="100" src="{{ asset('storage/' . $photo->image_url) }}" alt="">
+                                <img style="aspect-ratio:1; object-fit:cover" width="150"
+                                    src="{{ asset('storage/' . $photo->image_url) }}" alt="">
                             </td>
                             <td>{{ $photo->featured == null ? 'No' : 'Yes' }}</td>
-                            <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.photos.show', $photo) }}"><i
+                            <td class="text-center">
+                                <a class="btn btn-primary btn-sm mb-1" href="{{ route('admin.photos.show', $photo) }}"><i
                                         class="fa fa-eye"></i></a>
-                                <a class="btn btn-secondary btn-sm" href="{{ route('admin.photos.edit', $photo) }}"><i
+                                <a class="btn btn-secondary btn-sm mb-1" href="{{ route('admin.photos.edit', $photo) }}"><i
                                         class="fa fa-pencil"></i></a>
 
                                 @include('partials.modal-delete')
@@ -47,5 +48,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $photos->links('vendor.pagination.bootstrap-5') }}
     </div>
 @endsection

@@ -53,10 +53,12 @@
             <span>Featured</span>
             <div class="mb-3">
                 <label class="pe-2">
-                    <input type="radio" name="featured" id="featured" value="1"> Yes
+                    <input type="radio" name="featured" id="featured" value="1"
+                        {{ old('featured', $photo->featured) == 1 ? 'checked' : '' }}> Yes
                 </label>
                 <label>
-                    <input type="radio" name="featured" id="featured" value="0"> No
+                    <input type="radio" name="featured" id="featured" value="0"
+                        {{ old('featured', $photo->featured) == 0 ? 'checked' : '' }}> No
                 </label>
             </div>
 

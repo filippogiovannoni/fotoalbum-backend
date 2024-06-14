@@ -20,12 +20,12 @@
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelper"
-                    placeholder="My weekend" />
+                    placeholder="My weekend" value="{{ old('title') }}" />
                 <small id="titleHelper" class="form-text text-muted">Insert the photo title</small>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3">{{ old('description') }}</textarea>
                 <small id="descriptionHelper" class="form-text text-muted">Insert the photo description</small>
             </div>
 
