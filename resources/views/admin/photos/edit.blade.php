@@ -50,18 +50,14 @@
                 </select>
             </div>
 
+            <span>Featured</span>
             <div class="mb-3">
-                <span>Featured</span>
-                <div class="d-flex flex-column">
-                    <label>
-                        <input type="radio" name="featured" id="featured" value="1"
-                            {{ old('featured', $photo->featured) == 1 ? 'checked' : '' }}> Yes
-                    </label>
-                    <label>
-                        <input type="radio" name="featured" id="featured" value="0"
-                            {{ old('featured', $photo->featured) == 0 ? 'checked' : '' }}> No
-                    </label>
-                </div>
+                <label class="pe-2">
+                    <input type="radio" name="featured" id="featured" value="1"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="featured" id="featured" value="0"> No
+                </label>
             </div>
 
             <button class="btn btn-primary" type="submit">

@@ -47,10 +47,14 @@
                 </select>
             </div>
 
-            <div class="form-group form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="featured" name="featured" value="1"
-                    {{ old('featured') ? 'checked' : '' }}>
-                <label class="form-check-label" for="featured">Featured</label>
+            <span>Featured</span>
+            <div class="mb-3">
+                <label class="pe-2">
+                    <input type="radio" name="featured" id="featured" value="1"> Yes
+                </label>
+                <label>
+                    <input type="radio" name="featured" id="featured" value="0"> No
+                </label>
             </div>
 
             <button class="btn btn-primary" type="submit">
