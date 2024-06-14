@@ -95,6 +95,11 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        // Delete the photo from the storage that is required
+        Storage::delete($photo->image_url);
+
+        $photo->delete();
+
+        return to_route('admin.photos.index')->with('message', 'Photo deleted with success!');
     }
 }

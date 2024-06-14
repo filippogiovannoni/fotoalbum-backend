@@ -34,6 +34,8 @@
                                         class="fa fa-eye"></i></a>
                                 <a class="btn btn-secondary btn-sm" href="{{ route('admin.photos.edit', $photo) }}"><i
                                         class="fa fa-pencil"></i></a>
+
+                                @include('partials.modal-delete')
                             </td>
                         </tr>
 
