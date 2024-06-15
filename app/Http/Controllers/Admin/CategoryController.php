@@ -14,15 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -30,23 +23,14 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
-    }
+        // Validate
+        $val_data = $request->validated();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
+        // Create
+        Category::create($val_data);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
+        // Redirect
+        return to_route('admin.categories.index')->with('message', 'Category added with success!');
     }
 
     /**
@@ -54,7 +38,14 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        // Validate
+        $val_data = $request->validated();
+
+        // Update
+        $category->update($val_data);
+
+        // Redirect
+        return to_route('admin.categories.index')->with('message', 'Category updated with success!');
     }
 
     /**
@@ -62,6 +53,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return to_route('admin.categories.index')->with('message', 'Category deleted with success!');
     }
 }

@@ -30,7 +30,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo">
-                        Photo Mangement
+                        Photo Management
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
@@ -49,6 +49,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.photos.index') }}">{{ __('Photos') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Categories') }}</a>
                         </li>
                     </ul>
 

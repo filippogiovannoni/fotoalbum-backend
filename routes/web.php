@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -27,8 +28,11 @@ Route::middleware(['auth', 'verified'])
 
         Route::get('/', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-        // CRUD Operations
+        // CRUD Operations for Photo Model
         Route::resource('photos', PhotoController::class);
+
+        // CRUD Operations for Category Model
+        Route::resource('categories', CategoryController::class);
     });
 
 
