@@ -16,11 +16,13 @@
 
         <div class="row">
             <div class="col-7">
-                <img loading="lazy" class="card-img-top w-75" src="{{ asset('storage/' . $photo->image_url) }}">
+                <img width="500px" style="aspect-ratio : 1; object-fit:cover" loading="lazy"
+                    src="{{ asset('storage/' . $photo->image_url) }}">
             </div>
             <div class="col-5">
-                <h4>Photo Description</h4>
-                <div>{{ $photo->description }}</div>
+                <em>Category:</em>
+                <span class="badge text-bg-info mb-3">{{ $photo->category ? $photo->category->name : 'No category' }}</span>
+                <div>{!! $photo->description ?? '<em>No Description Available</em>' !!}</div>
 
             </div>
 

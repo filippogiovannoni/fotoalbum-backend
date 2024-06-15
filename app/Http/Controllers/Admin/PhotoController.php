@@ -6,6 +6,7 @@ use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Models\Photo;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -25,7 +26,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        $categories = [];
+        $categories = Category::all();
         return view('admin.photos.create', compact('categories'));
     }
 
@@ -66,7 +67,7 @@ class PhotoController extends Controller
     public function edit(Photo $photo)
     {
         if ($photo->user_id == auth()->id()) {
-            $categories = [];
+            $categories = Category::all();
             return view('admin.photos.edit', compact('photo', 'categories'));
         } else {
             abort(403, 'You cannot edit a photo that is not yours! ✋');

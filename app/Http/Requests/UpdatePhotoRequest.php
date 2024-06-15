@@ -25,7 +25,8 @@ class UpdatePhotoRequest extends FormRequest
             'title' => 'required',
             'description' => 'nullable',
             'image_url' => 'nullable|image|max:100|mimes:png,jpg,jpeg',
-            'featured' => 'boolean|nullable'
+            'featured' => 'boolean|nullable',
+            'category_id' => 'nullable|exists:categories,id'
         ];
     }
 }

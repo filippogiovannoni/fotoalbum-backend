@@ -42,10 +42,12 @@
 
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
-                <select class="form-select form-select-md" name="category" id="category">
+                <select class="form-select form-select-md" name="category_id" id="category_id">
                     <option selected disabled>Select one</option>
                     @foreach ($categories as $category)
-                        <option>{{ $category }}</option>
+                        <option value="{{ $category->id }}"
+                            {{ $category->id == old('category_id', $photo->category->id) ? 'selected' : '' }}>
+                            {{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
