@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-4">
         @include('partials.message')
         <a href="{{ route('admin.photos.create') }}" class="btn btn-primary">
             <i class="fa fa-plus-circle" aria-hidden="true"></i> Photo
         </a>
 
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-borderless table-secondary align-middle mt-3">
-                <thead class="table-light">
+            <table class="table table-striped table-hover table-borderless table-primary align-middle mt-3 border">
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Title</th>
@@ -23,8 +23,10 @@
                     @forelse ($photos as $photo)
                         <tr>
                             <td>{{ $photo->id }}</td>
-                            <td>{{ $photo->title }}</td>
-                            <td>{!! $photo->description ?? '<em>No Description Available</em>' !!}</td>
+                            <td><strong>
+                                    {{ $photo->title }}
+                                </strong></td>
+                            <td><em>{!! $photo->description ?? '<em>No Description Available</em>' !!}</em></td>
                             <td scope="row">
                                 <img style="aspect-ratio:1; object-fit:cover" width="150"
                                     src="{{ asset('storage/' . $photo->image_url) }}" alt="">

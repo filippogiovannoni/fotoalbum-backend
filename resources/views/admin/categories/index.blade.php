@@ -38,8 +38,8 @@
             </div>
             <div class="col-8">
                 <div class="table-responsive">
-                    <table class="table table-light">
-                        <thead>
+                    <table class="table table-striped table-hover table-borderless table-primary align-middle mt-3 border">
+                        <thead class="table-dark">
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Category Name</th>
@@ -51,9 +51,9 @@
                         <tbody>
                             @forelse ($categories as $category)
                                 <tr>
-                                    <td scope="row">{{ $category->id }}</td>
+                                    <td class="align-middle" scope="row">{{ $category->id }}</td>
 
-                                    <td>
+                                    <td class="align-middle">
 
                                         <form action="{{ route('admin.categories.update', $category) }}" method="post">
                                             @csrf

@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Models\Photo;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = User::find(auth()->id());
+    $photos = Photo::all();
+    return view('welcome', compact('user', 'photos'));
 });
 
 Route::middleware(['auth', 'verified'])
