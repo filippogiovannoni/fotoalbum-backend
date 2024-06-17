@@ -12,7 +12,7 @@ class PhotoController extends Controller
     public function index(Request $request)
     {
         if ($request->has('category_id')) {
-            $photos = Photo::with(['category', 'user'])->where('category_id', $request->category_id)->orderByDesc('id')->paginate();
+            $photos = Photo::with(['category', 'user'])->where('category_id', $request->category_id)->orderByDesc('featured')->paginate();
 
             return response()->json([
                 'success' => true,
@@ -30,7 +30,7 @@ class PhotoController extends Controller
             }
         }
 
-        $photos =  Photo::with(['category', 'user'])->orderByDesc('id')->paginate();
+        $photos =  Photo::with(['category', 'user'])->orderByDesc('featured')->paginate();
 
         return response()->json([
             'success' => true,
