@@ -20,6 +20,15 @@ class PhotoController extends Controller
             ]);
         }
 
+        if ($request->has('featured') == true) {
+            $photos = Photo::with(['category', 'user'])->where('featured', $request->featured)->orderByDesc('id')->paginate();
+
+            return response()->json([
+                'success' => true,
+                'results' => $photos,
+            ]);
+        }
+
         $photos =  Photo::with(['category', 'user'])->orderByDesc('id')->paginate();
 
         return response()->json([
