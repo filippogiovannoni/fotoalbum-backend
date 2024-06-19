@@ -30,7 +30,7 @@ class PhotoController extends Controller
             }
         }
 
-        $photos =  Photo::with(['category', 'user'])->orderByDesc('featured')->paginate();
+        $photos =  Photo::with(['category', 'user'])->orderByDesc('featured')->paginate(6);
 
         return response()->json([
             'success' => true,
